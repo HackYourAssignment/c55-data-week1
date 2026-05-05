@@ -9,11 +9,17 @@ The HackYourFuture Data Track Week 1 assignment: **The Data Cleaning Pipeline**.
 
 ## How to start
 
-1. Click **Use this template** → **Create a new repository** under your own GitHub account.
-2. Clone *your* copy locally.
-3. `git switch -c week1-attempt`
-4. Work through the three tasks below.
-5. Push and open a PR against your repo's `main`. The auto-grader runs on every push and posts a score comment.
+1. **Fork** this repository (`HackYourAssignment/c55-data-week1`) to your own GitHub account using the **Fork** button at the top right.
+2. Clone *your fork* locally:
+   ```bash
+   git clone https://github.com/<your-username>/c55-data-week1.git
+   cd c55-data-week1
+   ```
+3. Create a working branch: `git switch -c week1-attempt`
+4. Work through the three tasks below. Commit and push to your fork as you go.
+5. Open a Pull Request from `<your-username>/c55-data-week1:week1-attempt` **against `HackYourAssignment/c55-data-week1:main`**. The auto-grader runs on every push and posts a score comment on the PR.
+
+> ⚠️ Do **not** click "Use this template". This repo is your cohort's assignment repo: fork it and open the PR back here so your teacher can review and grade.
 
 ## Tasks at a glance
 
@@ -61,4 +67,4 @@ This prints a per-task breakdown and writes `score.json`. Iterate until
 
 ## Submission
 
-Open a PR against your fork's `main`. Share the PR URL with your teacher.
+Open a PR from your fork against `HackYourAssignment/c55-data-week1:main`. Share the PR URL with your teacher.
