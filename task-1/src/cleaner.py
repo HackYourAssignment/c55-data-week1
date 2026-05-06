@@ -20,6 +20,7 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 log = logging.getLogger(__name__)
 
 
+
 def clean_row(row: dict[str, str]) -> dict | None:
     """Clean a single CSV row. Return None to skip the row (validation failed)."""
     name = clean_name(row.get("name", ""))
