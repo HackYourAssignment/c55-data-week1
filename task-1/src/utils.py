@@ -5,7 +5,10 @@ value (or `None` for missing-but-valid). They never read or write files;
 keep them pure so they are easy to test.
 """
 
+
+
 from __future__ import annotations
+#from curses import raw
 
 
 def clean_name(raw: str) -> str:
@@ -13,7 +16,10 @@ def clean_name(raw: str) -> str:
 
     Returns the cleaned string. An empty input returns "".
     """
-    raise NotImplementedError("Implement clean_name (Task 1)")
+    return raw.strip()
+    
+
+    #raise NotImplementedError("Implement clean_name (Task 1)")
 
 
 def clean_email(raw: str) -> str:
@@ -21,7 +27,13 @@ def clean_email(raw: str) -> str:
 
     Returns the cleaned string. An empty input returns "".
     """
-    raise NotImplementedError("Implement clean_email (Task 1)")
+    return raw.strip().lower()
+
+
+   
+    
+    
+    #raise NotImplementedError("Implement clean_email (Task 1)")
 
 
 def clean_department(raw: str) -> str:
@@ -29,13 +41,27 @@ def clean_department(raw: str) -> str:
 
     Strip whitespace; treat empty string as missing.
     """
-    raise NotImplementedError("Implement clean_department (Task 1)")
+    cleaned = raw.strip()
+    return cleaned if cleaned else "Unknown"
+
+    #raise NotImplementedError("Implement clean_department (Task 1)")
 
 
 def clean_salary(raw: str) -> int | None:
+
     """Parse a messy salary cell into an int.
 
     Handles inputs like "85000", "  95000", '"68,000"', "N/A", "".
     Returns None when the value cannot be parsed (missing or "N/A").
     """
-    raise NotImplementedError("Implement clean_salary (Task 1)")
+    cleaned = raw.strip().replace(",", "").replace('"', "")
+    
+    if not cleaned or cleaned.lower() == "n/a":
+        return None
+    
+    try:
+        return int(float(cleaned))
+    except (ValueError, TypeError):
+        return None
+    
+    #raise NotImplementedError("Implement clean_salary (Task 1)")
