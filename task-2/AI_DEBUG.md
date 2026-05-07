@@ -63,4 +63,4 @@ Honestly, I just accepted the fix because it worked and moved on. I didn't reall
 
 I probably should have read the task more carefully at the start. It did say "expect at least one row to break your first attempt" so I wasn't really thinking about error handling from the beginning. I just wrote the simplest code and then it broke.
 
-The try/except thing is useful I guess. I'll probably use it more in the future when I expect things might fail. But I'm still not 100% clear on when you need to use it vs when you don't.
+The try/except thing is useful. I'll probably use it more in the future when I expect things might fail. 
