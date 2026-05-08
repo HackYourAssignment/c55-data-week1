@@ -13,6 +13,9 @@ def clean_name(raw: str) -> str:
 
     Returns the cleaned string. An empty input returns "".
     """
+    if raw is None:
+        return ""
+    return raw.strip()
     raise NotImplementedError("Implement clean_name (Task 1)")
 
 
@@ -21,6 +24,9 @@ def clean_email(raw: str) -> str:
 
     Returns the cleaned string. An empty input returns "".
     """
+    if raw is None:
+        return ""
+    return raw.lower().strip()
     raise NotImplementedError("Implement clean_email (Task 1)")
 
 
@@ -29,6 +35,12 @@ def clean_department(raw: str) -> str:
 
     Strip whitespace; treat empty string as missing.
     """
+    if raw is None:
+        return "Unknown"
+    department = raw.strip()
+    if department =="":
+        return "Unknown"
+    return department
     raise NotImplementedError("Implement clean_department (Task 1)")
 
 
@@ -38,4 +50,19 @@ def clean_salary(raw: str) -> int | None:
     Handles inputs like "85000", "  95000", '"68,000"', "N/A", "".
     Returns None when the value cannot be parsed (missing or "N/A").
     """
+    if raw is None:
+        return None 
+    
+    salary = raw.strip()
+
+    salary = salary.replace('"','').replace(',','')
+    
+    if salary =="" or salary == "N/A":
+        return None 
+    
+    try:
+        return int(salary)
+    except ValueError:
+        return None
+
     raise NotImplementedError("Implement clean_salary (Task 1)")
