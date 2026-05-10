@@ -19,7 +19,7 @@ def clean_email(raw: str) -> str:
 
 def clean_department(raw: str) -> str:
     cleaned = raw.strip()
-    return cleaned if cleaned else "Unknown"
+    return cleaned.title() if cleaned else "Unknown"
 
 
 def clean_salary(raw: str) -> int | None:
