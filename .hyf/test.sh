@@ -35,10 +35,10 @@ task1_msg="missing src/cleaner.py or src/utils.py"
 if [ -f task-1/src/cleaner.py ] && [ -f task-1/src/utils.py ]; then
     task1=10
     task1_msg="files exist but cleaner failed to run"
-    if ( cd task-1 && python3 src/cleaner.py --input data/messy_users.csv --output output/clean_users.json ) >/dev/null 2>&1; then
+    if ( cd task-1 && python src/cleaner.py --input data/messy_users.csv --output output/clean_users.json ) >/dev/null 2>&1; then
         task1=20
         task1_msg="cleaner ran but output failed structural checks"
-        if python3 - <<'PY' 2>/dev/null
+        if python - <<'PY' 2>/dev/null
 import json
 from pathlib import Path
 
