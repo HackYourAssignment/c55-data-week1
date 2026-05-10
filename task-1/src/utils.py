@@ -9,27 +9,17 @@ from __future__ import annotations
 
 
 def clean_name(raw: str) -> str:
-    """Strip leading/trailing whitespace from a name.
-
-    Returns the cleaned string. An empty input returns "".
-    """
-    raise NotImplementedError("Implement clean_name (Task 1)")
+    return raw.strip().title()
 
 
 def clean_email(raw: str) -> str:
-    """Lowercase the email, strip surrounding whitespace.
-
-    Returns the cleaned string. An empty input returns "".
-    """
-    raise NotImplementedError("Implement clean_email (Task 1)")
+    
+    return raw.strip().lower()
 
 
 def clean_department(raw: str) -> str:
-    """Return the department, or 'Unknown' if missing/empty.
-
-    Strip whitespace; treat empty string as missing.
-    """
-    raise NotImplementedError("Implement clean_department (Task 1)")
+    cleaned = raw.strip()
+    return cleaned.title() if cleaned else "Unknown"
 
 
 def clean_salary(raw: str) -> int | None:
@@ -38,4 +28,12 @@ def clean_salary(raw: str) -> int | None:
     Handles inputs like "85000", "  95000", '"68,000"', "N/A", "".
     Returns None when the value cannot be parsed (missing or "N/A").
     """
-    raise NotImplementedError("Implement clean_salary (Task 1)")
+    cleaned = raw.strip().replace(",", "").replace('"', "")
+    if not cleaned or cleaned.upper() == "N/A":
+        return None
+    
+    try:
+        return int(cleaned) 
+    except ValueError:
+     return None
+    
