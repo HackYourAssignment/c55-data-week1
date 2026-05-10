@@ -9,7 +9,7 @@ from __future__ import annotations
 
 
 def clean_name(raw: str) -> str:
-    return raw.strip()
+    return raw.strip().title()
 
 
 def clean_email(raw: str) -> str:
