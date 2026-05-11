@@ -18,6 +18,8 @@ def clean_name(raw: str) -> str:
     Returns the cleaned string. An empty input returns "".
     """
     name = raw.strip()
+    if name == "":
+        logging.warning("skipping row with empty name")
     return name
    
 

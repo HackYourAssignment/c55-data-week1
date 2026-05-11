@@ -14,7 +14,7 @@ import json
 import logging
 from pathlib import Path
 
-from utils import clean_department, clean_email, clean_name, clean_salary
+from .utils import clean_department, clean_email, clean_name, clean_salary
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 log = logging.getLogger(__name__)
