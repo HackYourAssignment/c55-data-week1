@@ -9,7 +9,6 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 
-logging.basicConfig(level=logging.INFO)
 
 
 def clean_name(raw: str) -> str:
@@ -19,9 +18,9 @@ def clean_name(raw: str) -> str:
     """
     name = raw.strip()
     if name == "":
-        logging.warning("skipping row with empty name")
+
+        return ""
     return name
-   
 
 
 def clean_email(raw: str) -> str:
@@ -50,7 +49,12 @@ def clean_salary(raw: str) -> int | None:
     Handles inputs like "85000", "  95000", '"68,000"', "N/A", "".
     Returns None when the value cannot be parsed (missing or "N/A").
     """
-    salary = raw.strip().replace(",", "").replace(".", "")
-    if salary in ("", "N/A"):
+    try:
+        salary = raw.strip().replace(",", "").replace(".", "")
+        if salary in ("", "N/A"):  
+            return None
+        return int(salary)         
+    except ValueError:
+        logging.warning("skipping row with invalid salary: %s", raw)
         return None
-    return int(salary)
+
