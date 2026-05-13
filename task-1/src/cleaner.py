@@ -16,8 +16,6 @@ from pathlib import Path
 
 from utils import clean_department, clean_email, clean_name, clean_salary
 
-logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-log = logging.getLogger(__name__)
 
 
 def clean_row(row: dict[str, str]) -> dict | None:
@@ -25,10 +23,10 @@ def clean_row(row: dict[str, str]) -> dict | None:
     name = clean_name(row.get("name", ""))
     email = clean_email(row.get("email", ""))
     if not name:
-        log.warning("skipping row id=%s: missing name", row.get("id"))
+        print("skipping row id=%s: missing name", row.get("id"))
         return None
     if not email:
-        log.warning("skipping row id=%s: missing email", row.get("id"))
+        print("skipping row id=%s: missing email", row.get("id"))
         return None
     return {
         "id": int(row["id"]) if row.get("id", "").isdigit() else row.get("id"),
@@ -46,7 +44,7 @@ def main(input_path: Path, output_path: Path) -> None:
         cleaned = [c for row in reader if (c := clean_row(row)) is not None]
     with output_path.open("w", encoding="utf-8") as f:
         json.dump(cleaned, f, indent=2)
-    log.info("wrote %d cleaned rows to %s", len(cleaned), output_path)
+    print("wrote %d cleaned rows to %s", len(cleaned), output_path)
 
 
 if __name__ == "__main__":
@@ -57,5 +55,5 @@ if __name__ == "__main__":
     try:
         main(args.input, args.output)
     except FileNotFoundError as e:
-        log.error("input file not found: %s", e.filename)
+        print("input file not found: %s", e.filename)
         raise SystemExit(1)

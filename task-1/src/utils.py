@@ -6,6 +6,9 @@ keep them pure so they are easy to test.
 """
 
 from __future__ import annotations
+import logging
+from pathlib import Path
+
 
 
 def clean_name(raw: str) -> str:
@@ -13,7 +16,11 @@ def clean_name(raw: str) -> str:
 
     Returns the cleaned string. An empty input returns "".
     """
-    raise NotImplementedError("Implement clean_name (Task 1)")
+    name = raw.strip()
+    if name == "":
+
+        return ""
+    return name
 
 
 def clean_email(raw: str) -> str:
@@ -21,7 +28,8 @@ def clean_email(raw: str) -> str:
 
     Returns the cleaned string. An empty input returns "".
     """
-    raise NotImplementedError("Implement clean_email (Task 1)")
+    email = raw.strip().lower()
+    return email
 
 
 def clean_department(raw: str) -> str:
@@ -29,7 +37,10 @@ def clean_department(raw: str) -> str:
 
     Strip whitespace; treat empty string as missing.
     """
-    raise NotImplementedError("Implement clean_department (Task 1)")
+    department = raw.strip()
+    if department == "":
+        return "Unknown"
+    return department
 
 
 def clean_salary(raw: str) -> int | None:
@@ -38,4 +49,12 @@ def clean_salary(raw: str) -> int | None:
     Handles inputs like "85000", "  95000", '"68,000"', "N/A", "".
     Returns None when the value cannot be parsed (missing or "N/A").
     """
-    raise NotImplementedError("Implement clean_salary (Task 1)")
+    try:
+        salary = raw.strip().replace(",", "").replace(".", "")
+        if salary in ("", "N/A"):  
+            return None
+        return int(salary)         
+    except ValueError:
+        logging.warning("skipping row with invalid salary: %s", raw)
+        return None
+
